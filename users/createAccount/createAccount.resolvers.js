@@ -1,4 +1,4 @@
-import client from "../client"
+import client from "../../client"
 import bcrypt from "bcrypt"
 
 export default {
@@ -19,18 +19,17 @@ export default {
         } 
         
         const uglyPassword = await bcrypt.hash(password, 10)
-        return client.user.create({
+        await client.user.create({
           data: {
             username, email, firstName, lastName, password: uglyPassword
           }
         })
+
       } catch (exception) {
         return exception
       }
-
-      // hash password
       
-      // save and return the user
+      return {ok: true}
     }
   }
 }
