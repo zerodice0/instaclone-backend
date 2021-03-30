@@ -1,10 +1,10 @@
 # Instaclone
 Instaclone Backend.
 
-## User: 
+## User:
 - [x] Create Account
-- [ ] See Profile
-- [ ] Login
+- [X] See Profile
+- [X] Login
 - [ ] Edit Profile
 - [ ] Follow User
 - [ ] Unfollow User
