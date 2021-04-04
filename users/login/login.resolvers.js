@@ -7,7 +7,12 @@ export default {
     login: async(_, {username, password}) => {
       // check password with args.password
       // issue a token and send it to the user
-      const user = await client.user.findFirst(username)
+      const user = await client.user.findFirst({
+        where: {
+          username
+        }
+      })
+      
       if(!user) {
         return {ok: false, error: "User not found."}
       }
