@@ -1,14 +1,16 @@
-import client from "../client";
+import client from "../../client";
 
 export default {
   Query: {
-    seeProfile: (_, {username}) => {
-        console.log(username)
-        return client.user.findUnique({
+    seeProfile: async (_, {username}) => {
+      console.log(username)
+      const result = await client.user.findUnique({
         where: {
           username,
         }
       })
+
+      return result
     }
   }
 }
