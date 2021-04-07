@@ -16,17 +16,20 @@ const resolver = async (
   },
   {loggedInUser}
 ) => {
-  const {filename, createReadStream} = await avatar
-  const readStream = createReadStream()
-  const writeStream = createWriteStream(
-    `${process.cwd()}/uploads/${filename}`,
-    {flags: "w"}
-  )
-  
-  readStream.pipe(writeStream)
-  readStream.on("Error", (error) => console.log(error))
-
-  // console.log(stream)
+  let avatarUrl = null
+  if (avatar) {
+    const {filename, createReadStream} = await avatar
+    const fileExtension = filename.split(".").pop()
+    const newFilename = `${loggedInUser.username}-avatar.${fileExtension}`
+    const readStream = createReadStream()
+    const writeStream = createWriteStream(
+      `${process.cwd()}/uploads/${newFilename}`,
+      {flags: "w"}
+    )
+    readStream.pipe(writeStream)
+    avatarUrl = `http://localhost:4000/uploads/${newFilename}`
+    readStream.on("Error", (error) => console.log(error))
+  }
 
   let uglyPassword = null
   if (newPassword) {
@@ -45,6 +48,7 @@ const resolver = async (
         email,
         bio,
         ...(uglyPassword && {password: uglyPassword}),
+        ...(avatarUrl && {avatar: avatarUrl})
       }
     })
 
