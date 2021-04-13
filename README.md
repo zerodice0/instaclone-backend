@@ -9,6 +9,6 @@ Instaclone Backend.
 - [X] Change Avatar (Image upload)
 - [X] Follow User
 - [X] Unfollow User
-- [ ] See followers and See following w/ Pagination
-- [ ] Computed Fields
+- [X] See followers and See following w/ Pagination
+- [X] Computed Fields
 - [ ] Search Users
